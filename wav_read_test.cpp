@@ -4,13 +4,13 @@
 #include <cstring>
 #include <cstdint>
 
-int check_user_input(int num_args, char** args_in) {
+bool check_user_input(int num_args, char** args_in) {
     if (num_args != 3) {
         std::cout << "Insufficent number of arguments provided. Running this command should take the form " << args_in[0] 
             << " <input wav file> <output wav file>\n"; 
-        exit(-1);
+        return false;
     }
-    return 0;
+    return true;
 }
 
 bool extract_wav_file(const char* filename, std::vector<unsigned char>& wav) {
@@ -28,7 +28,9 @@ bool extract_wav_file(const char* filename, std::vector<unsigned char>& wav) {
 }
 
 int main(int argc, char** argv) {
-    check_user_input(argc, argv); 
+    if (!check_user_input(argc, argv)) {
+        exit(-1);
+   }
     char* in_file = argv[1];
     char* out_file = argv[2];
 
@@ -49,5 +51,4 @@ int main(int argc, char** argv) {
     std::cout << "sample rate: " << fs << "\n";
     std::cout << (char*)&header[36] << "\n";
     std::cout << "size of the data section: " << data_sect_size << "\n";
-
 }
