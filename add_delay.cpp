@@ -17,12 +17,11 @@ int main(int argc, char** argv) {
     char* out_file = argv[2];
     WavFile wav;
 
-    extract_wav_file(in_file, wav);
+    std::cout << "Reading in '" << in_file << "'...\n";
+    if (!extract_wav_file(in_file, wav)) {
+        exit(-1);
+    }
 
-    std::cout << wav.file_content.size() << "\n";
-    std::cout << wav.num_channels << "\n";
-    std::cout << wav.sample_rate << "\n";
-    std::cout << wav.data[0] << "\n";
-
+    std::cout << "Writing to '" << out_file << "'...\n";
     write_wav_file(out_file, wav);
 }

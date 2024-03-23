@@ -57,15 +57,76 @@ bool extract_wav_file(const char* filename, WavFile& wav) {
     header_check.resize(4);
     memcpy(header_check.data(), wav.file_content.data() + 36, 4);
 
+    int data_offset = 0;
     if (header_check == "data") {
-        wav.data = (int16_t*)(wav.file_content.data() + 44);
+        data_offset = 44;
     }
     else {
         //Handle "LIST" section
-        wav.data = (int16_t*)(wav.file_content.data() + (*(int*)&wav.file_content[40] + 40));
+        data_offset = *(int*)&wav.file_content[40] + 48;
     }
+    wav.data = (int16_t*)(wav.file_content.data() + data_offset);
+    wav.data_len = (wav.file_content.size() - data_offset)/2;
 
     return true;
+}
+
+void print_header(const WavFile wav) {
+    std::string print_str;
+    int print_int;
+
+    print_str.resize(4);
+    memcpy(print_str.data(), wav.file_content.data(), 4);
+    std::cout << print_str << "\n";
+
+    print_int = *(int32_t*)&wav.file_content[4];
+    std::cout << "File size: " << print_int << "\n";
+
+    memcpy(print_str.data(), wav.file_content.data() + 8, 4);
+    std::cout << print_str << "\n";
+
+    memcpy(print_str.data(), wav.file_content.data() + 12, 4);
+    std::cout << print_str << "\n";
+
+    print_int = *(int32_t*)&wav.file_content[16];
+    std::cout << "Length of format: " << print_int << "\n";
+
+    print_int = *(int16_t*)&wav.file_content[20];
+    std::cout << "Type of format: " << print_int << "\n";
+
+    print_int = *(int16_t*)&wav.file_content[22];
+    std::cout << "Number of channels: " << print_int << "\n";
+
+    print_int = *(int32_t*)&wav.file_content[24];
+    std::cout << "Sample rate: " << print_int << "\n";
+
+    print_int = *(int32_t*)&wav.file_content[28];
+    std::cout << "(Sample Rate * BitsPerSample * Channels) / 8: " << print_int << "\n";
+
+    print_int = *(int16_t*)&wav.file_content[32];
+    std::cout << "(BitsPerSample * Channels) / 8.1 - 8 bit mono2 - 8 bit stereo/16 bit mono4 - 16 bit stereo: " << print_int << "\n";
+
+    print_int = *(int16_t*)&wav.file_content[34];
+    std::cout << "Bits per sample: " << print_int << "\n";
+
+    memcpy(print_str.data(), wav.file_content.data() + 36, 4);
+    std::cout << print_str << "\n";
+
+    if (print_str == "data") {
+        print_int = *(int32_t*)&wav.file_content[40];
+        std::cout << "Size of data section: " << print_int << "\n";
+        return;
+    }
+
+    print_int = *(int32_t*)&wav.file_content[40];
+    std::cout << "Size of the rest of 'LIST' section: " << print_int << "\n";
+
+    memcpy(print_str.data(), wav.file_content.data() + 44, 4);
+    std::cout << "List type ID: " << print_str << "\n";
+
+    print_str.resize(print_int);
+    memcpy(print_str.data(), wav.file_content.data() + 48, print_int);
+    std::cout << "Rest of 'LIST' section:\n" << print_str << "\n";
 }
 
 bool write_wav_file(const char* filename, const WavFile wav) {
