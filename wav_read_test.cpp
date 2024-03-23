@@ -74,6 +74,15 @@ bool extract_wav_file(const char* filename, std::vector<unsigned char>& wav) {
     return true;
 }
 
+bool write_wav_file(const char* filename, const std::vector<unsigned char>& wav, const int16_t num_channels, const int32_t sample_rate) {
+    *(int32_t*)&wav[24] = sample_rate;
+
+    std::ofstream f(filename, std::ios::binary);    
+    f.write((char*)&wav[0], wav.size());
+
+    return true;
+}
+
 int main(int argc, char** argv) {
     if (!check_user_input(argc, argv)) {
         exit(-1);
@@ -91,7 +100,12 @@ int main(int argc, char** argv) {
     std::cout << "Sample rate: " << wav_in_head.sample_rate << "\n";
     std::cout << "Data offset: " << wav_in_head.data_start << "\n";
 
-    std::vector<unsigned char> data_out;
+    int16_t* data_out = (int16_t*)(wav_in.data() + wav_in_head.data_start);
+
+    /*
     data_out.resize(wav_in.size() - wav_in_head.data_start);
     memcpy(data_out.data(), wav_in.data() + wav_in_head.data_start, data_out.size());
+    */
+
+    write_wav_file(out_file, wav_in, wav_in_head.num_channels, wav_in_head.sample_rate*3);
 }
