@@ -1,0 +1,17 @@
+TODO
+----
+Add ratio of original sample to delayed in add_delay.cpp
+
+Longterm:
+Implement add_reverb.cpp
+Implement bitcrush.cpp
+Implement fft to plot audio freq spec with cpp
+Implement filtering (low/band/high pass)
+Implement generate_noise.cpp (can make white noise, filter for other types of noise)
+Implement mix R/L channels
+Implement distortion.cpp (not sure how this will work)
+----
+
+Complete:
+Clean up WavFile class
+Fix WavFile.print_header()

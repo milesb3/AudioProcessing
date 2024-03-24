@@ -1,4 +1,4 @@
-#include "wav_file_io.hpp"
+#include "WavFile.hpp"
 
 bool check_user_input(int num_args, char** args_in) {
     if (num_args != 4) {
@@ -15,41 +15,39 @@ int main(int argc, char** argv) {
     }
     char* in_file = argv[1];
     char* out_file = argv[2];
-    float delay = atof(argv[3]);
-    WavFile wav;
-
+    double delay = atof(argv[3]);
+    
     std::cout << "Reading in '" << in_file << "'...\n";
-    if (!extract_wav_file(in_file, wav)) {
+    WavFile wav(in_file);
+
+    if (wav.data_size == 0) {
         exit(-1);
     }
+    std::vector<unsigned char> in = wav.file;
 
-    std::cout << "Adding " << delay << " seconds of delay...\n";
-    //TODO MAKE WORK FOR 2 CHANNELS!!!
     //Determine k, the number of samples in delay seconds of audio
-    int k = wav.sample_rate * delay;
-    std::cout << "k = " << k << " samples\n";
+    int k = wav.sample_rate * delay * wav.num_channels;
 
-    if (k > wav.data_len) {
-        std::cout << "Cannot add a delay of " << delay << " seconds as this is longer than the input sample.\n";
-        exit(-1);
-    }
-    std::cout << "data_len = " << wav.data_len << "\n";
+    std::cout << "Adding " << delay << " seconds (" << k / wav.num_channels << " samples) of delay...\n";
+
+    int original_data_size = wav.data_size;
 
     //Resize wav file so there is sufficient room to hold added delay samples
-    wav.file_content.resize(wav.file_content.size() + k);
-    wav.data = (int16_t*)&wav.file_content[44]; //FIGURE OUT BETTER WAY TO DEAL WITH THIS!!!
+    wav.enlarge(k);
 
     //Define vector to hold interim calculations
     std::vector<float> data_delay;
-    data_delay.resize(wav.data_len + k);
+    data_delay.resize(wav.data_size);
 
     //Copy first k values, which will have no delay
     for (int i=0; i<k; i++) {
         data_delay[i] = (float)wav.data[i];
     }
     //Calculate all delayed values
-    for (int i=0; i<wav.data_len; i++) {
-        data_delay[i+k] = (float)wav.data[i+k] + (float)wav.data[i];
+    for (int i=0; i<original_data_size; i+=wav.num_channels) {
+        for (int j=0; j<wav.num_channels; j++) {
+            data_delay[i+k+j] = (float)wav.data[i+k+j] + (float)wav.data[i+j];
+        }
     }
     //Normalize calculated data to fit within int16
     float max_val_delay = 0;
@@ -58,19 +56,14 @@ int main(int argc, char** argv) {
             max_val_delay = std::abs(data_delay[i]);
         }
     }
-    std::cout << "max_val_delay = " << max_val_delay << "\n";
     for (int i=0; i<data_delay.size(); i++) {
         data_delay[i] = data_delay[i] * (32768 / max_val_delay);
     }
     //Write calculated data to data that will be written out
-    for (int i=0; i<(wav.data_len+k); i++) {
+    for (int i=0; i<(wav.data_size); i++) {
         wav.data[i] = (int16_t)data_delay[i];
     }
 
-    //Update data length
-    wav.data_len = wav.data_len + k;
-
-
     std::cout << "Writing to '" << out_file << "'...\n";
-    write_wav_file(out_file, wav);
+    wav.write_out(out_file);
 }
