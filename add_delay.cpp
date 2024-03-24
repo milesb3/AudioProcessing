@@ -1,9 +1,9 @@
 #include "WavFile.hpp"
 
 bool check_user_input(int num_args, char** args_in) {
-    if (num_args != 4) {
+    if (num_args < 4) {
         std::cout << "Insufficent number of arguments provided. Running this command should take the form " << args_in[0] 
-            << " <input wav file> <output wav file> <length of delay in seconds>\n"; 
+            << " <input wav file> <output wav file> <length of delay in seconds> [OPTIONAL] <delay sample multiplier>\n"; 
         return false;
     }
     return true;
@@ -15,7 +15,11 @@ int main(int argc, char** argv) {
     }
     char* in_file = argv[1];
     char* out_file = argv[2];
-    double delay = atof(argv[3]);
+    float delay = atof(argv[3]);
+    float d_mult = 1.0;
+    if (argc > 4) {
+        d_mult = atof(argv[4]);
+    }
     
     std::cout << "Reading in '" << in_file << "'...\n";
     WavFile wav(in_file);
@@ -46,7 +50,7 @@ int main(int argc, char** argv) {
     //Calculate all delayed values
     for (int i=0; i<original_data_size; i+=wav.num_channels) {
         for (int j=0; j<wav.num_channels; j++) {
-            data_delay[i+k+j] = (float)wav.data[i+k+j] + (float)wav.data[i+j];
+            data_delay[i+k+j] = (float)wav.data[i+k+j] + d_mult * (float)wav.data[i+j];
         }
     }
     //Normalize calculated data to fit within int16
