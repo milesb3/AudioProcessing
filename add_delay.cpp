@@ -2,7 +2,7 @@
 
 bool check_user_input(int num_args, char** args_in) {
     if (num_args < 4) {
-        std::cout << "Insufficent number of arguments provided. Running this command should take the form " << args_in[0] 
+        std::cout << "Insufficent number of arguments provided. Running this command should take the form:\n" << args_in[0] 
             << " <input wav file> <output wav file> <length of delay in seconds> [OPTIONAL] <delay sample multiplier>\n"; 
         return false;
     }

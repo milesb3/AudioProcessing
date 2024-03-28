@@ -1,10 +1,11 @@
 TODO
 ----
+Implement fill_out.cpp
+Implement bitcrush.cpp
 Implement add_reverb.cpp
 Implement fft to plot audio freq spec with cpp
 
 Longterm:
-Implement bitcrush.cpp
 Implement filtering (low/band/high pass)
 Implement generate_noise.cpp (can make white noise, filter for other types of noise)
 Implement mix R/L channels
@@ -15,3 +16,4 @@ Complete:
 Add ratio of original sample to delayed in add_delay.cpp
 Clean up WavFile class
 Fix WavFile.print_header()
+
