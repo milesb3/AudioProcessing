@@ -16,7 +16,7 @@ class WavFile {
 
         WavFile(const char*);
         void enlarge(int);
-        std::vector<int16_t> get_samples();
+        std::vector<float> get_samples();
         void print_header();
         void write_out(const char*);
 

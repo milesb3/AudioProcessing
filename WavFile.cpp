@@ -72,8 +72,8 @@ void WavFile::enlarge(int num_new_elem) {
     data_size += num_new_elem;
 }
 
-std::vector<int16_t> WavFile::get_samples() {
-    std::vector<int16_t> samples;
+std::vector<float> WavFile::get_samples() {
+    std::vector<float> samples;
     samples.resize(data_size);
 
     for (int i=0; i<data_size; i++) {

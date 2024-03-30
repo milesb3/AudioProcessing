@@ -3,3 +3,6 @@
 *.wav
 .vscode
 *.py
+*.ninja*
+cmake_install.cmake
+CMakeCache.txt
