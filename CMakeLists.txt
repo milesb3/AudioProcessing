@@ -6,3 +6,4 @@ project(
   LANGUAGES CXX)
 
 add_executable(add_delay add_delay.cpp WavFile.cpp)
+add_executable(fill_out fill_out.cpp WavFile.cpp)

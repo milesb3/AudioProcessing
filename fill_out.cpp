@@ -36,7 +36,9 @@ int main(int argc, char** argv) {
     float fill_mult = 32768.0 / max_samp;
 
     std::cout << "Filling out each sample from " << in_file << " with fill multiplier " << fill_mult << "...\n";
-    
+    for (int i=0; i<wav.data_size; i++) {
+        wav.data[i] *= fill_mult;
+    }
 
     std::cout << "Writing to '" << out_file << "'...\n";
     wav.write_out(out_file);
