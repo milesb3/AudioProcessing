@@ -1,6 +1,7 @@
 TODO
 ----
 Implement bitcrush.cpp
+    Not happy with sound. Look into downsampling instead of just dividing each sample
 Implement add_reverb.cpp
 Implement fft to plot audio freq spec with cpp
 
