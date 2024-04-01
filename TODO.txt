@@ -1,12 +1,13 @@
 TODO
 ----
-Implement bitcrush.cpp
-    Not happy with sound. Look into downsampling instead of just dividing each sample
+convolve.cpp
 Implement add_reverb.cpp
 Implement fft to plot audio freq spec with cpp
+Implement filtering (low/band/high pass)
 
 Longterm:
-Implement filtering (low/band/high pass)
+Implement bitcrush.cpp
+    Not happy with sound. Look into downsampling instead of just dividing each sample
 Implement generate_noise.cpp (can make white noise, filter for other types of noise)
 Implement mix R/L channels
 Implement distortion.cpp (not sure how this will work)
