@@ -1,8 +1,10 @@
 TODO
 ----
+Figure out how to plot in cpp
+Implement fft to plot audio freq spec with cpp
+downsample.cpp
 convolve.cpp
 Implement add_reverb.cpp
-Implement fft to plot audio freq spec with cpp
 Implement filtering (low/band/high pass)
 
 Longterm:
