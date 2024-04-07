@@ -32,11 +32,27 @@ int main(int argc, char** argv) {
     //Create vector of indexes
     std::vector<double> sample_indexes;
     std::vector<std::pair<double, double>> samp_plot;
-    for (double i=0; i<samples.size(); i++) {
+    std::vector<std::pair<double, double>> samp_plot2;
+    int step_size = std::max(0.0001 * (wav.data_size / wav.num_channels), 1.0);
+    for (double i=0; i<samples.size(); i+=step_size) {
         samp_plot.push_back(std::make_pair(i, (double) samples.at((int) i)));
+        if (wav.num_channels > 1) {
+            samp_plot2.push_back(std::make_pair(i, (double) samples.at((int) ++i)));
+        }
+
     }
 
     std::cout << "Plotting vectors in gnuplot...\n";
     Gnuplot gp;
-    gp << "plot" << gp.file1d(samp_plot) << "with lines\n";
+    gp << "set title '" << in_file << " samples' noenhanced\nshow title\n";
+    gp << "set xlabel 'sample number'\nshow xlabel\n";
+    gp << "set ylabel 'value'\nshow ylabel\n";
+    gp << "plot" << gp.file1d(samp_plot) << "with lines ";
+    if (wav.num_channels > 1) {
+        gp << "title 'left channel'," << gp.file1d(samp_plot2) << " with lines title 'right channel'";
+    }
+    else {
+        gp << "title 'mono'";
+    }
+    gp << "\n";
 }
