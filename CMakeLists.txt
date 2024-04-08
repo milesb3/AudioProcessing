@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.1)
 
 project(
-  BeanMusicProcessing
+  BeanAudioProcessing
   VERSION 1.0
   LANGUAGES CXX)
 
-add_executable(add_delay add_delay.cpp WavFile.cpp)
-add_executable(fill_out fill_out.cpp WavFile.cpp)
-add_executable(bitcrush bitcrush.cpp WavFile.cpp)
-add_executable(plot_samples plot_samples.cpp WavFile.cpp)
-add_executable(plot_spectrum plot_spectrum.cpp WavFile.cpp)
+add_executable(add_delay src/add_delay.cpp src/WavFile.cpp)
+add_executable(fill_out src/fill_out.cpp src/WavFile.cpp)
+add_executable(bitcrush src/bitcrush.cpp src/WavFile.cpp)
+add_executable(plot_samples src/plot_samples.cpp src/WavFile.cpp)
+add_executable(plot_spectrum src/plot_spectrum.cpp src/WavFile.cpp)
 
 target_link_libraries(plot_spectrum fftw3)
 

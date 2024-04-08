@@ -1,6 +1,5 @@
 TODO
 ----
-Organize files into src folder
 convolve.cpp
 filter.cpp (low/band/high pass)
 downsample.cpp
@@ -18,6 +17,7 @@ Implement distortion.cpp (not sure how this will work)
 
 Complete
 ----
+Organize files into src folder
 Implement fft to plot audio freq spec with cpp
 Figure out how to plot in cpp with plot_samples.cpp
 Implement fill_out.cpp
