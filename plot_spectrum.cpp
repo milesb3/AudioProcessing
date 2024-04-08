@@ -59,14 +59,11 @@ int main(int argc, char** argv) {
     //Calculate PSD values from DFT. The PSD can be estimated by the square of the magnitued of FFt/DFT
     std::vector<std::vector<std::pair<double, double>>> channels_PSD_plot;
     channels_PSD_plot.resize(wav.num_channels);
-    for (auto &channel_PSD_plot: channels_PSD_plot) {
-        channel_PSD_plot.resize(size_fft_out);
-    }
-    for (int i=0; i<size_fft_out; i++) {
+    for (int i=0; i<size_fft_out; i+=100) {
         double freq_bin = ((double) i * wav.sample_rate) / num_samp_per_channel;
         for (int j=0; j<wav.num_channels; j++) {
             double PSD_val = 10 * log10((pow(channels_fft[j][i][0] / (double) num_samp_per_channel, 2) + pow(channels_fft[j][i][1] / (double) num_samp_per_channel, 2)) * 2 / (double) wav.sample_rate);
-            channels_PSD_plot[j][i] = std::make_pair(freq_bin, PSD_val);
+            channels_PSD_plot[j].push_back(std::make_pair(freq_bin, PSD_val));
         }
     }
 

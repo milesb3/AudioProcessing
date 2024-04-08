@@ -1,12 +1,10 @@
 TODO
 ----
-Implement fft to plot audio freq spec with cpp
-    -> Make work for wav files with 2 channels
 Organize files into src folder
-downsample.cpp
 convolve.cpp
+filter.cpp (low/band/high pass)
+downsample.cpp
 Implement add_reverb.cpp
-Implement filtering (low/band/high pass)
 
 Longterm:
 Implement bitcrush.cpp
@@ -20,6 +18,7 @@ Implement distortion.cpp (not sure how this will work)
 
 Complete
 ----
+Implement fft to plot audio freq spec with cpp
 Figure out how to plot in cpp with plot_samples.cpp
 Implement fill_out.cpp
 Add ratio of original sample to delayed in add_delay.cpp
