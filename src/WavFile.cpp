@@ -60,7 +60,7 @@ WavFile::WavFile(const char* filename) {
 void WavFile::enlarge(int num_new_elem) {
     //Allocates enough space to add num_new_elem int16s to WavFile properties
 
-    //Resize file to fit added number of elements
+    //Resize file to fit added number of elements (times 2 cause char versus int16)
     file.resize(file.size() + (num_new_elem * 2));
     //Update file size in header
     *(int32_t*)&file[FILE_SIZE_OFFSET] = file.size() - 8;

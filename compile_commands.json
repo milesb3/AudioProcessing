@@ -1,0 +1,67 @@
+[
+{
+  "directory": "/home/bean/Music/processing",
+  "command": "/usr/bin/g++ -O3 -DNDEBUG -o CMakeFiles/add_delay.dir/src/add_delay.cpp.o -c /home/bean/Music/processing/src/add_delay.cpp",
+  "file": "/home/bean/Music/processing/src/add_delay.cpp"
+},
+{
+  "directory": "/home/bean/Music/processing",
+  "command": "/usr/bin/g++ -O3 -DNDEBUG -o CMakeFiles/add_delay.dir/src/WavFile.cpp.o -c /home/bean/Music/processing/src/WavFile.cpp",
+  "file": "/home/bean/Music/processing/src/WavFile.cpp"
+},
+{
+  "directory": "/home/bean/Music/processing",
+  "command": "/usr/bin/g++ -O3 -DNDEBUG -o CMakeFiles/fill_out.dir/src/fill_out.cpp.o -c /home/bean/Music/processing/src/fill_out.cpp",
+  "file": "/home/bean/Music/processing/src/fill_out.cpp"
+},
+{
+  "directory": "/home/bean/Music/processing",
+  "command": "/usr/bin/g++ -O3 -DNDEBUG -o CMakeFiles/fill_out.dir/src/WavFile.cpp.o -c /home/bean/Music/processing/src/WavFile.cpp",
+  "file": "/home/bean/Music/processing/src/WavFile.cpp"
+},
+{
+  "directory": "/home/bean/Music/processing",
+  "command": "/usr/bin/g++ -O3 -DNDEBUG -o CMakeFiles/bitcrush.dir/src/bitcrush.cpp.o -c /home/bean/Music/processing/src/bitcrush.cpp",
+  "file": "/home/bean/Music/processing/src/bitcrush.cpp"
+},
+{
+  "directory": "/home/bean/Music/processing",
+  "command": "/usr/bin/g++ -O3 -DNDEBUG -o CMakeFiles/bitcrush.dir/src/WavFile.cpp.o -c /home/bean/Music/processing/src/WavFile.cpp",
+  "file": "/home/bean/Music/processing/src/WavFile.cpp"
+},
+{
+  "directory": "/home/bean/Music/processing",
+  "command": "/usr/bin/g++ -O3 -DNDEBUG -o CMakeFiles/add_reverb.dir/src/add_reverb.cpp.o -c /home/bean/Music/processing/src/add_reverb.cpp",
+  "file": "/home/bean/Music/processing/src/add_reverb.cpp"
+},
+{
+  "directory": "/home/bean/Music/processing",
+  "command": "/usr/bin/g++ -O3 -DNDEBUG -o CMakeFiles/add_reverb.dir/src/WavFile.cpp.o -c /home/bean/Music/processing/src/WavFile.cpp",
+  "file": "/home/bean/Music/processing/src/WavFile.cpp"
+},
+{
+  "directory": "/home/bean/Music/processing",
+  "command": "/usr/bin/g++ -O3 -DNDEBUG -o CMakeFiles/add_reverb.dir/src/audio_process_lib.cpp.o -c /home/bean/Music/processing/src/audio_process_lib.cpp",
+  "file": "/home/bean/Music/processing/src/audio_process_lib.cpp"
+},
+{
+  "directory": "/home/bean/Music/processing",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_FILESYSTEM_DYN_LINK -DBOOST_IOSTREAMS_DYN_LINK -DBOOST_SYSTEM_DYN_LINK -O3 -DNDEBUG -o CMakeFiles/plot_samples.dir/src/plot_samples.cpp.o -c /home/bean/Music/processing/src/plot_samples.cpp",
+  "file": "/home/bean/Music/processing/src/plot_samples.cpp"
+},
+{
+  "directory": "/home/bean/Music/processing",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_FILESYSTEM_DYN_LINK -DBOOST_IOSTREAMS_DYN_LINK -DBOOST_SYSTEM_DYN_LINK -O3 -DNDEBUG -o CMakeFiles/plot_samples.dir/src/WavFile.cpp.o -c /home/bean/Music/processing/src/WavFile.cpp",
+  "file": "/home/bean/Music/processing/src/WavFile.cpp"
+},
+{
+  "directory": "/home/bean/Music/processing",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_FILESYSTEM_DYN_LINK -DBOOST_IOSTREAMS_DYN_LINK -DBOOST_SYSTEM_DYN_LINK -O3 -DNDEBUG -o CMakeFiles/plot_spectrum.dir/src/plot_spectrum.cpp.o -c /home/bean/Music/processing/src/plot_spectrum.cpp",
+  "file": "/home/bean/Music/processing/src/plot_spectrum.cpp"
+},
+{
+  "directory": "/home/bean/Music/processing",
+  "command": "/usr/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_FILESYSTEM_DYN_LINK -DBOOST_IOSTREAMS_DYN_LINK -DBOOST_SYSTEM_DYN_LINK -O3 -DNDEBUG -o CMakeFiles/plot_spectrum.dir/src/WavFile.cpp.o -c /home/bean/Music/processing/src/WavFile.cpp",
+  "file": "/home/bean/Music/processing/src/WavFile.cpp"
+}
+]
