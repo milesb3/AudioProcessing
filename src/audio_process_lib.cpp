@@ -1,6 +1,6 @@
 #include "audio_process_lib.hpp"
 
-bool convolve(const std::vector<float> &signal, const std::unordered_map<uint64_t, float> &impulse, std::vector<float> &result) {
+bool convolve(const std::vector<float> &signal, const std::vector<std::pair<uint64_t, float>> &impulse, std::vector<float> &result) {
     std::cout << "s size = " << signal.size() << "\n";
     std::cout << "imp size = " << impulse.size() << "\n";
     if (signal.size() == 0 || impulse.size() == 0 || signal.size() < impulse.size()) {
@@ -9,7 +9,7 @@ bool convolve(const std::vector<float> &signal, const std::unordered_map<uint64_
     
     //Resize vector result to fit output of convolution
     result.clear();
-    result.resize(signal.size() + impulse.size(), 0.0);
+    result.resize(signal.size() + impulse[impulse.size()-1].first, 0.0);
     std::cout << "res size = " << result.size() << "\n";
 
     //Perform convolution

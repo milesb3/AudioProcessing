@@ -2,4 +2,4 @@
 #include <vector>
 #include <unordered_map>
 
-bool convolve(const std::vector<float> &signal, const std::unordered_map<uint64_t, float> &impulse, std::vector<float> &result);
+bool convolve(const std::vector<float> &signal, const std::vector<std::pair<uint64_t, float>> &impulse, std::vector<float> &result);

@@ -1,9 +1,14 @@
 TODO
 ----
+Add set_data to WavFile.cpp, which sets the data part of the wavfile to an input vector. This vector can be float and is normalized to int16_t
 convolve.cpp
+    Change impulse from unordered map to vector of pairs
+add_reverb.cpp
+    add two channel support
+change delay vector to vector of pairs to increase speed (many zeroes in delay vector)
+ImpulseResponse.cpp
 filter.cpp (low/band/high pass)
 downsample.cpp
-Implement add_reverb.cpp
 
 Longterm:
 Implement bitcrush.cpp

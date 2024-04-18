@@ -28,12 +28,11 @@ int main(int argc, char** argv) {
 
     std::cout << "Generating reverb impulse response...\n";
     //For test, make impulse response that creates echo every second, three times
-    std::unordered_map<uint64_t, float> h_reverb;
-    h_reverb[0] = 1;
-    h_reverb[wav.sample_rate] = 1;
-    h_reverb[wav.sample_rate * 2] = 1;
-    h_reverb[wav.sample_rate * 3] = 1;
-
+    std::vector<std::pair<uint64_t, float>> h_reverb;
+    h_reverb.push_back(std::pair(0, 1));
+    h_reverb.push_back(std::pair(wav.sample_rate, 1));
+    h_reverb.push_back(std::pair(wav.sample_rate * 2, 1));
+    h_reverb.push_back(std::pair(wav.sample_rate * 3, 1));
 
     std::cout << "Performing convolution...\n";
     std::vector<float> result;
