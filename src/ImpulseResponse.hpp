@@ -4,6 +4,8 @@
 
 #define IMPULSE_LIB_FILE "src/impulse_responses.txt"
 #define COMMENT_IDENTIFIER "#"
+#define INFO_SECTION_START_IDENTIFIER "{"
+#define INFO_SECTION_END_IDENTIFIER "}"
 
 class ImpulseResponse {
     public:

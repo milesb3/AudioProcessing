@@ -22,14 +22,48 @@ ImpulseResponse::ImpulseResponse(const char* impulse_name) {
     f.seekg(0);
     f.read((char*)&h_file_info[0], size);
 
+    //Copy impulse_name to name_check, a string with no spaces for comparing with read_name later
+    //TODO !
+    std::string name_check(impulse_name);
+    std::cout << "Before: " << name_check << "\n";
+    for (int i; i<name_check.size(); i++) {
+        if (name_check[i] == *" ") {
+            std::cout << "'" << name_check[i] << "'\n";
+            name_check.erase(i);
+        } 
+    }
+    std::cout << "After: " << name_check << "\n";
+
     //Search for matching impulse_name in impulse lib file
+    std::string read_name = "";
     bool found_name = false;
     int char_index = 0;
     while (char_index < h_file_info.size()) {
         //Ignore lines that start with comment identifier
         if (h_file_info[char_index] == *COMMENT_IDENTIFIER) {
-            std::cout << h_file_info[char_index] << "\n";
+            while ((h_file_info[char_index] != *"\n") && (char_index < h_file_info.size())) {
+                char_index++;
+            }
+            //Reset read_name when moving to next line in impulse_responses.txt
+            read_name = "";
         }
+
+        //Reset read_name when entering a new line
+        else if (h_file_info[char_index] == *"\n") {
+            read_name = "";
+        }
+
+        //If we read the opening of the information section, check if we have read a name that matches the input impulse_name
+        else if (h_file_info[char_index] == *INFO_SECTION_START_IDENTIFIER) {
+            //TODO !
+            std::cout << "read name: '" << read_name << "'\n";
+        }
+
+        //Add read character to read_name, to check later if it matches the impulse_name input into this constructor
+        else if (h_file_info[char_index] != *" ") {
+            read_name.push_back(h_file_info[char_index]);
+        }
+
         char_index++;
     }    
 }
